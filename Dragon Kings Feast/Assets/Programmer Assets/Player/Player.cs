@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int leftSpeed;
-    private float leftTimer;
-
+    //these affect your max speed in a certin direction
     public int rightSpeed;
-    private float rightTimer;
-
+    public int leftSpeed;
     public int upSpeed;
-    private float upTimer;
-
     public int downSpeed;
+
+    //these values are used to manage the acceleration in a direction
+    //programmer use only
+    private float rightTimer;
+    private float leftTimer;
+    private float upTimer;
     private float downTimer;
 
-
+    //these vlause are used to dictate how far to the sides and up and down a player can go
+    //assume that what ever value you put in is mirroed both in the positive and negative
+    //eg. maxHorizontal = 10 means the player can only move between -10 and 10 on the z plane
     public int maxHorizontal;
     public int maxVertical;
 
+    //Move speed affects the global max speed, so if over all you feel that everything is to slow or 
+    //everything needs to speed up change this value recomanded min of 1
     public float moveSpeed;
+    //this affects how fast the player reaches there maxs speed so with an acceleration speed of 1 you will reach your max speed in 1 seconds
+    //with an acceleration speed of 2 you will reach your max speed in 0.5 seconds
     public float accelerationSpeed;
 
+    //this shows the players current velocity, you should never need to change it directly it is more of a refrence
     public Vector3 velocity;
 
     private void Update()
@@ -198,9 +206,6 @@ public class Player : MonoBehaviour
         }
 
         velocity = acceleration;
-
-
-
-
+        
     }
 }
