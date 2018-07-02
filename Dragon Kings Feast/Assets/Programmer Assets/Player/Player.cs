@@ -33,6 +33,13 @@ public class Player : MonoBehaviour
     //this shows the players current velocity, you should never need to change it directly it is more of a refrence
     public Vector3 velocity;
 
+    private PlayerEffectControler pec;
+
+    private void Start()
+    {
+        pec = GetComponentInChildren<PlayerEffectControler>();
+    }
+
     private void Update()
     {
         ReadControls();
@@ -40,6 +47,16 @@ public class Player : MonoBehaviour
         transform.position += (velocity * Time.deltaTime) * moveSpeed;
 
         LockPos();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            pec.active = true;
+        }
+
+        if(Input.GetKeyUp(KeyCode.Space)) 
+        {
+            pec.active = false;
+        }
     }
 
     private void LockPos()
