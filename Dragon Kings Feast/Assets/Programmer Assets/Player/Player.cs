@@ -5,20 +5,7 @@ using UnityEngine.UI;
 
 
 public class Player : MonoBehaviour
-{
-    //these affect your max speed in a certin direction
-    public int rightSpeed;
-    public int leftSpeed;
-    public int upSpeed;
-    public int downSpeed;
-
-    //these values are used to manage the acceleration in a direction
-    //programmer use only
-    private float rightTimer;
-    private float leftTimer;
-    private float upTimer;
-    private float downTimer;
-    
+{    
     //this is used to stop the phone from moving back so suddenly
     [Range(0, 1)]
     public float tiltBackCutOff;
@@ -35,29 +22,24 @@ public class Player : MonoBehaviour
     //Move speed affects the global max speed, so if over all you feel that everything is to slow or 
     //everything needs to speed up change this value recomanded min of 1
     public float moveSpeed;
-    //this affects how fast the player reaches there maxs speed so with an acceleration speed of 1 you will reach your max speed in 1 seconds
-    //with an acceleration speed of 2 you will reach your max speed in 0.5 seconds
-    public float accelerationSpeed;
 
     //this shows the players current velocity, you should never need to change it directly it is more of a refrence
     public Vector3 velocity;
-
-    private PlayerEffectControler pec;
+    
+    //the speed that the player moves forward
+    public float forwardMoveSpeed;
+    //the starting position of the charcter in the world
+    private Vector3 startPos;
 
     public Text debugText;
 
     private void Start()
     {
-        pec = GetComponentInChildren<PlayerEffectControler>();
+        startPos = transform.position;
     }
 
         private void Update()
     {
-        
-#if UNITY_EDITOR
-        ReadControls();
-#endif
-
 #if UNITY_ANDROID
         ReadPhoneControls();
 #endif
@@ -65,186 +47,39 @@ public class Player : MonoBehaviour
         transform.position += (velocity * Time.deltaTime) * moveSpeed;
 
         LockPos();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            pec.active = true;
-        }
-
-        if(Input.GetKeyUp(KeyCode.Space)) 
-        {
-            pec.active = false;
-        }
     }
 
     private void LockPos()
     {
         //////////////////Right/////////////////
 
-        if (-maxHorizontal > transform.position.z)
+        if (-maxHorizontal + startPos.z > transform.position.z)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -maxHorizontal);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -maxHorizontal + startPos.z);
         }
 
         //////////////////Left/////////////////
 
-        if (maxHorizontal < transform.position.z)
+        if (maxHorizontal + startPos.z < transform.position.z)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, maxHorizontal);
+            transform.position = new Vector3(transform.position.x, transform.position.y, maxHorizontal + startPos.z);
         }
 
         //////////////////Up/////////////////
 
-        if (maxVertical < transform.position.y)
+        if (maxVertical + startPos.y < transform.position.y)
         {
-            transform.position = new Vector3(transform.position.x, maxVertical, transform.position.z);
+            transform.position = new Vector3(transform.position.x, maxVertical + startPos.y, transform.position.z);
         }
 
         //////////////////Down/////////////////
 
-        if (-maxVertical > transform.position.y)
+        if (-maxVertical + startPos.y > transform.position.y)
         {
-            transform.position = new Vector3(transform.position.x, -maxVertical, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -maxVertical + startPos.y, transform.position.z);
         }
     }
-
-    private void ReadControls()
-    {
-        Vector3 acceleration = new Vector3(0,0,0);
-
-
-        //////////////////Right/////////////////
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            acceleration.z += Mathf.Lerp(0, rightSpeed, rightTimer);
-
-            if (rightTimer < 1.0f)
-            {
-                rightTimer += Time.deltaTime * accelerationSpeed;
-
-                if (rightTimer > 1.0f)
-                {
-                    rightTimer = 1.0f;
-                }
-            }
-        }
-
-        if (Input.GetKey(KeyCode.D) == false)
-        {
-            acceleration.z += Mathf.Lerp(0, rightSpeed, rightTimer);
-
-            if (rightTimer > 0.0f)
-            {
-                rightTimer -= Time.deltaTime * accelerationSpeed;
-
-                if (rightTimer < 0.0f)
-                {
-                    rightTimer = 0.0f;
-                }
-            }
-        }
-
-        //////////////////Left/////////////////
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            acceleration.z += Mathf.Lerp(0, leftSpeed, leftTimer);
-
-            if (leftTimer < 1.0f)
-            {
-                leftTimer += Time.deltaTime * accelerationSpeed;
-
-                if (leftTimer > 1.0f)
-                {
-                    leftTimer = 1.0f;
-                }
-            }
-        }
-
-        if (Input.GetKey(KeyCode.A) == false)
-        {
-            acceleration.z += Mathf.Lerp(0, leftSpeed, leftTimer);
-
-            if (leftTimer > 0.0f)
-            {
-                leftTimer -= Time.deltaTime * accelerationSpeed;
-
-                if (leftTimer < 0.0f)
-                {
-                    leftTimer = 0.0f;
-                }
-            }
-        }
-
-        //////////////////Up/////////////////
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            acceleration.y += Mathf.Lerp(0, upSpeed, upTimer);
-
-            if (upTimer < 1.0f)
-            {
-                upTimer += Time.deltaTime * accelerationSpeed;
-
-                if (upTimer > 1.0f)
-                {
-                    upTimer = 1.0f;
-                }
-            }
-        }
-
-        if (Input.GetKey(KeyCode.W) == false)
-        {
-            acceleration.y += Mathf.Lerp(0, upSpeed, upTimer);
-
-            if (upTimer > 0.0f)
-            {
-                upTimer -= Time.deltaTime * accelerationSpeed;
-
-                if (upTimer < 0.0f)
-                {
-                    upTimer = 0.0f;
-                }
-            }
-        }
-
-        //////////////////Down/////////////////
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            acceleration.y += Mathf.Lerp(0, downSpeed, downTimer);
-            
-            if (downTimer < 1.0f)
-            {
-                downTimer += Time.deltaTime * accelerationSpeed;
-
-                if (downTimer > 1.0f)
-                {
-                    downTimer = 1.0f;
-                }
-            }
-        }
-
-        if (Input.GetKey(KeyCode.S) == false)
-        {
-            acceleration.y += Mathf.Lerp(0, downSpeed, downTimer);
-
-            if (downTimer > 0.0f)
-            {
-                downTimer -= Time.deltaTime * accelerationSpeed;
-
-                if (downTimer < 0.0f)
-                {
-                    downTimer = 0.0f;
-                }
-            }
-        }
-        
-        velocity = acceleration;
-        
-    }
-
+    
     private void ReadPhoneControls()
     {
         Vector3 acceleration = new Vector3(0, 0, 0);
@@ -272,9 +107,7 @@ public class Player : MonoBehaviour
             {
                 tiltBackCutOff = 1;
             }
-
-            Debug.Log(tiltvalue);
-
+            
             float holder = tiltvalue * ForwardTiltSpeed.Evaluate(tiltvalue);
                         
             acceleration.y += -holder;
@@ -283,7 +116,7 @@ public class Player : MonoBehaviour
         if (Input.acceleration.z < 0)
         {
             float holder = Input.acceleration.z + tiltBackCutOff;
-
+            
             if (holder > 0)
             {
                 holder = 0;
