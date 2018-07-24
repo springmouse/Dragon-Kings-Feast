@@ -43,7 +43,8 @@ public class Player : MonoBehaviour
 #if UNITY_ANDROID
         ReadPhoneControls();
 #endif
-        
+
+        velocity.x = forwardMoveSpeed;
         transform.position += (velocity * Time.deltaTime) * moveSpeed;
 
         LockPos();
