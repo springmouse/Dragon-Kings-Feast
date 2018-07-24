@@ -140,7 +140,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &27751698
 MonoBehaviour:
@@ -274,53 +274,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400036, guid: f23cfe450829ec3489974c61b4c14470, type: 3}
   m_PrefabInternal: {fileID: 1255908119}
---- !u!1001 &923854278
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4179006343198998, guid: 8655b2e6cd850b6409ec9863343a4dbb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -5.240773
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179006343198998, guid: 8655b2e6cd850b6409ec9863343a4dbb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.8014755
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179006343198998, guid: 8655b2e6cd850b6409ec9863343a4dbb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 1.1109469
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179006343198998, guid: 8655b2e6cd850b6409ec9863343a4dbb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179006343198998, guid: 8655b2e6cd850b6409ec9863343a4dbb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179006343198998, guid: 8655b2e6cd850b6409ec9863343a4dbb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179006343198998, guid: 8655b2e6cd850b6409ec9863343a4dbb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179006343198998, guid: 8655b2e6cd850b6409ec9863343a4dbb, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23213719520739674, guid: 8655b2e6cd850b6409ec9863343a4dbb,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3cc8e5eb87b71e548b6a9b1e6b83fe5b, type: 2}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 8655b2e6cd850b6409ec9863343a4dbb, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1255908119
 Prefab:
   m_ObjectHideFlags: 0
@@ -358,7 +311,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: f23cfe450829ec3489974c61b4c14470, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100036, guid: f23cfe450829ec3489974c61b4c14470, type: 3}
       propertyPath: m_Name
@@ -476,3 +429,43 @@ Transform:
   m_Father: {fileID: 170923872}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 25, y: 90, z: 0}
+--- !u!1 &1629429455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1629429457}
+  - component: {fileID: 1629429456}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1629429456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1629429455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71228ec878790a43927b6f8032622d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1629429457
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1629429455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.7706265, y: -2.910532, z: -5.713607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
