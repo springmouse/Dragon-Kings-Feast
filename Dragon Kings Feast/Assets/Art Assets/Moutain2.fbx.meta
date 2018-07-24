@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 987939a611c75144691bb1425408dfef
-timeCreated: 1532388628
+guid: f7be7b348256766489edeee2e72c3112
+timeCreated: 1532400744
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -11,6 +11,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: pPlane3
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -60,7 +61,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -85,7 +86,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
