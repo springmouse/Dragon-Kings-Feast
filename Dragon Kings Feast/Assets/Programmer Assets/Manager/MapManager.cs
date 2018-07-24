@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,15 +8,26 @@ public class MapManager : MonoBehaviour
     public List<GameObject> tilesInUse;
     public List<GameObject> tilesUsed;
 
+    public List<GameObject> leftClouds;
+    public List<GameObject> rightClouds;
+
     public Player player;
 
     public GameObject tile;
+    public GameObject cloud;
+
+    public float minCloudYRange;
+    public float maxCloudYRange;
+    
+    public float maxCloudZRange;
+
+    public int cloudCount;
 
     public int mapLength;
     public int tileSize;
-
-	// Use this for initialization
-	void Start ()
+    
+    // Use this for initialization
+    void Start ()
     {
         for (int i = 0; i < mapLength; i++)
         {
@@ -24,13 +36,60 @@ public class MapManager : MonoBehaviour
 
             tilesInUse.Add(go);
         }
-	}
+
+        for (int i = 0; i < cloudCount; i++)
+        {
+            GameObject go = Instantiate(cloud, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
+            go.transform.SetParent(transform);
+
+            go.transform.position = new Vector3(UnityEngine.Random.Range(0, tileSize * 2),
+                        UnityEngine.Random.Range(minCloudYRange, maxCloudYRange) + 7.5f,
+                        UnityEngine.Random.Range(0, maxCloudZRange) + (tileSize / 2));
+
+            rightClouds.Add(go);
+        }
+
+        for (int i = 0; i < cloudCount; i++)
+        {
+            GameObject go = Instantiate(cloud, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
+            go.transform.SetParent(transform);
+
+            go.transform.position = new Vector3(UnityEngine.Random.Range(0, tileSize * 2),
+                        UnityEngine.Random.Range(minCloudYRange, maxCloudYRange) + 7.5f,
+                        UnityEngine.Random.Range(-maxCloudZRange, 0) - (tileSize / 2));
+
+            leftClouds.Add(go);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
         ManageTiles();
+        ManageClouds();
+    }
 
+    private void ManageClouds()
+    {
+        for (int i = 0; i < rightClouds.Count; i++)
+        {
+            if (rightClouds[i].transform.position.x < player.transform.position.x)
+            {
+                rightClouds[i].transform.position = new Vector3(UnityEngine.Random.Range(0, tileSize * 2) + player.transform.position.x + (tileSize * 2), 
+                    UnityEngine.Random.Range(minCloudYRange, maxCloudYRange) + 7.5f,
+                    UnityEngine.Random.Range(0, maxCloudZRange) + (tileSize / 2));
+            }
+        }
+
+        for (int i = 0; i < leftClouds.Count; i++)
+        {
+            if (leftClouds[i].transform.position.x < player.transform.position.x)
+            {
+                leftClouds[i].transform.position = new Vector3(UnityEngine.Random.Range(0, tileSize * 2) + player.transform.position.x + (tileSize * 2),
+                    UnityEngine.Random.Range(minCloudYRange, maxCloudYRange) + 7.5f,
+                    UnityEngine.Random.Range(-maxCloudZRange, 0) - (tileSize / 2));
+            }
+        }
     }
 
     public void ManageTiles()

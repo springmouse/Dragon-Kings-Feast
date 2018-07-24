@@ -18,7 +18,7 @@ public class BillBoardScript : MonoBehaviour
         if (timer > 0.25f)
         {
             transform.LookAt(Camera.main.transform.position);
-            transform.Rotate(new Vector3(transform.rotation.x + 180.0f, transform.rotation.y, transform.rotation.z));
+            transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z));
         }
 	}
 }
