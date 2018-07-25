@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
     public List<GameObject> leftClouds;
     public List<GameObject> rightClouds;
 
+    public List<GameObject> activeBoosts;
     public List<GameObject> inactiveBoosts;
 
     public Player player;
@@ -18,6 +19,7 @@ public class MapManager : MonoBehaviour
     public GameObject tile;
     public GameObject cloud;
     public GameObject boost;
+    public GameObject enemy;
 
     public float minCloudYRange;
     public float maxCloudYRange;
@@ -30,6 +32,8 @@ public class MapManager : MonoBehaviour
     //NEW NAMES
     public int minRange;
     public int MaxRange;
+
+    public int enemySpawnCount;
 
     public int mapLength;
     public int tileSize;
@@ -52,7 +56,22 @@ public class MapManager : MonoBehaviour
                     bo.transform.position = new Vector3(i * tileSize + UnityEngine.Random.Range(-tileSize, tileSize), 
                         player.startPos.y + UnityEngine.Random.Range(-player.maxVertical, player.maxVertical),
                         player.startPos.z + UnityEngine.Random.Range(-player.maxHorizontal, player.maxHorizontal));
+
+                    bo.GetComponent<Boost>().map = this;
+
+                    activeBoosts.Add(bo);
                 }
+            }
+
+            for (int w = 0; w < enemySpawnCount; w++)
+            {
+                GameObject en = Instantiate(enemy, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
+                en.transform.SetParent(transform);
+
+                en.transform.position = new Vector3(i * tileSize + UnityEngine.Random.Range(-tileSize, tileSize),
+                            player.startPos.y + UnityEngine.Random.Range(-player.maxVertical, player.maxVertical),
+                            player.startPos.z + UnityEngine.Random.Range(-player.maxHorizontal, player.maxHorizontal));
+
             }
 
             tilesInUse.Add(go);
@@ -81,6 +100,8 @@ public class MapManager : MonoBehaviour
 
             leftClouds.Add(go);
         }
+
+        
     }
 	
 	// Update is called once per frame
@@ -88,12 +109,33 @@ public class MapManager : MonoBehaviour
     {
         ManageTiles();
         ManageClouds();
+        ManageBoosts();
     }
 
     public void DeactivateBoost(GameObject go)
     {
         go.SetActive(false);
         inactiveBoosts.Add(go);
+        activeBoosts.Remove(go);
+    }
+
+    private void ManageBoosts()
+    {
+        List<GameObject> KillBoosts = new List<GameObject>();
+
+        for (int i = 0; i < activeBoosts.Count; i++)
+        {
+            if (activeBoosts[i].transform.position.x < player.transform.position.x)
+            {
+                KillBoosts.Add(activeBoosts[i]);
+            }
+        }
+
+        for (int i = 0; i < KillBoosts.Count; i++)
+        {
+            activeBoosts.Remove(KillBoosts[i]);
+            inactiveBoosts.Add(KillBoosts[i]);
+        }
     }
 
     private void ManageClouds()
@@ -152,6 +194,9 @@ public class MapManager : MonoBehaviour
                         tilesInUse.Add(tilesUsed[0]);
                         tilesUsed.Remove(tilesUsed[0]);
 
+                        GenPickUp((int)(tilesInUse[i].transform.position.x + tileSize));
+                        SpawnEnemy((int)(tilesInUse[i].transform.position.x + tileSize));
+
                         break;
                     }
                     else
@@ -161,12 +206,57 @@ public class MapManager : MonoBehaviour
 
                         tilesInUse.Add(go);
 
+                        GenPickUp((int)(tilesInUse[i].transform.position.x + tileSize));
+                        SpawnEnemy((int)(tilesInUse[i].transform.position.x + tileSize));
+
                         break;
                     }
                 }
             }
         }
+    }
 
+    public void SpawnEnemy(int xPos)
+    {
+        for (int w = 0; w < enemySpawnCount; w++)
+        {
+            GameObject en = Instantiate(enemy, new Vector3(xPos, 0, 0), Quaternion.identity);
+            en.transform.SetParent(transform);
 
+            en.transform.position = new Vector3(xPos + UnityEngine.Random.Range(-tileSize, tileSize),
+                        player.startPos.y + UnityEngine.Random.Range(-player.maxVertical, player.maxVertical),
+                        player.startPos.z + UnityEngine.Random.Range(-player.maxHorizontal, player.maxHorizontal));
+
+        }
+    }
+
+    public void GenPickUp(int xPos)
+    {
+        for (int u = 0; u < pickUpCount; u++)
+        {
+            int spawn = UnityEngine.Random.Range(minRange, MaxRange);
+
+            if (spawn > 0)
+            {
+                if (inactiveBoosts.Count <= 0)
+                {
+                    GameObject bo = Instantiate(boost, new Vector3(xPos, 0, 0), Quaternion.identity);
+                    bo.transform.position = new Vector3(xPos + UnityEngine.Random.Range(-tileSize, tileSize),
+                        player.startPos.y + UnityEngine.Random.Range(-player.maxVertical, player.maxVertical),
+                        player.startPos.z + UnityEngine.Random.Range(-player.maxHorizontal, player.maxHorizontal));
+
+                    bo.GetComponent<Boost>().map = this;
+
+                    activeBoosts.Add(bo);
+                }
+                else
+                {
+                    inactiveBoosts[0].transform.position = new Vector3(xPos + UnityEngine.Random.Range(-tileSize, tileSize),
+                        player.startPos.y + UnityEngine.Random.Range(-player.maxVertical, player.maxVertical),
+                        player.startPos.z + UnityEngine.Random.Range(-player.maxHorizontal, player.maxHorizontal));
+                    inactiveBoosts.Remove(inactiveBoosts[0]);
+                }
+            }
+        }
     }
 }

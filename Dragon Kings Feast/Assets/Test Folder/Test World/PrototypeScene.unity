@@ -157,18 +157,21 @@ MonoBehaviour:
   tilesUsed: []
   leftClouds: []
   rightClouds: []
+  activeBoosts: []
   inactiveBoosts: []
   player: {fileID: 170923870}
   tile: {fileID: 1718386094607162, guid: 5bcaade7bcd1bbe479af253807c61f45, type: 2}
   cloud: {fileID: 1872513028976712, guid: 3600ebde1e9dc934eb47c27c57f8fbe1, type: 2}
   boost: {fileID: 1478326558787624, guid: 91fcf3a4dd2d27d419826a27bd234de6, type: 2}
+  enemy: {fileID: 1778621090268788, guid: 4177efdd9de20a34fac4f8b1e06f75fb, type: 2}
   minCloudYRange: -4
   maxCloudYRange: 4
   maxCloudZRange: 6
-  cloudCount: 8
+  cloudCount: 25
   pickUpCount: 3
   minRange: 0
   MaxRange: 7
+  enemySpawnCount: 1
   mapLength: 3
   tileSize: 12
 --- !u!1 &95108175
@@ -300,6 +303,21 @@ CapsuleCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400036, guid: f23cfe450829ec3489974c61b4c14470, type: 3}
   m_PrefabInternal: {fileID: 1255908119}
+--- !u!54 &170923874
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 170923869}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &705999932
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &705999933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -669,6 +687,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1916732806 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1478326558787624, guid: 91fcf3a4dd2d27d419826a27bd234de6,
+    type: 2}
+  m_PrefabInternal: {fileID: 2003612960}
+--- !u!54 &1916732812
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1916732806}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &2003612960
 Prefab:
   m_ObjectHideFlags: 0

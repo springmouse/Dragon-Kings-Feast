@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boost : MonoBehaviour
 {
 
-    MapManager map;
+    public MapManager map;
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +21,10 @@ public class Boost : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            map.DeactivateBoost(gameObject);
+            if (map != null)
+            {
+                map.DeactivateBoost(gameObject);
+            }
         }
     }
 }
