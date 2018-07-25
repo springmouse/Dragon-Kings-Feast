@@ -29,11 +29,11 @@ public class Player : MonoBehaviour
     //the speed that the player moves forward
     public float forwardMoveSpeed;
     //the starting position of the charcter in the world
-    private Vector3 startPos;
+    public Vector3 startPos;
 
     public Text debugText;
 
-    private void Start()
+    private void Awake()
     {
         startPos = transform.position;
     }

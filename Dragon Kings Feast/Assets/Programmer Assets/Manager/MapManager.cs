@@ -11,10 +11,13 @@ public class MapManager : MonoBehaviour
     public List<GameObject> leftClouds;
     public List<GameObject> rightClouds;
 
+    public List<GameObject> inactiveBoosts;
+
     public Player player;
 
     public GameObject tile;
     public GameObject cloud;
+    public GameObject boost;
 
     public float minCloudYRange;
     public float maxCloudYRange;
@@ -22,6 +25,11 @@ public class MapManager : MonoBehaviour
     public float maxCloudZRange;
 
     public int cloudCount;
+
+    public int pickUpCount;
+    //NEW NAMES
+    public int minRange;
+    public int MaxRange;
 
     public int mapLength;
     public int tileSize;
@@ -33,6 +41,19 @@ public class MapManager : MonoBehaviour
         {
             GameObject go = Instantiate(tile, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
             go.transform.SetParent(transform);
+
+            for (int u = 0; u < pickUpCount; u++)
+            {
+                int spawn = UnityEngine.Random.Range(minRange, MaxRange);
+
+                if (spawn > 0)
+                {
+                    GameObject bo = Instantiate(boost, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
+                    bo.transform.position = new Vector3(i * tileSize + UnityEngine.Random.Range(-tileSize, tileSize), 
+                        player.startPos.y + UnityEngine.Random.Range(-player.maxVertical, player.maxVertical),
+                        player.startPos.z + UnityEngine.Random.Range(-player.maxHorizontal, player.maxHorizontal));
+                }
+            }
 
             tilesInUse.Add(go);
         }
@@ -67,6 +88,12 @@ public class MapManager : MonoBehaviour
     {
         ManageTiles();
         ManageClouds();
+    }
+
+    public void DeactivateBoost(GameObject go)
+    {
+        go.SetActive(false);
+        inactiveBoosts.Add(go);
     }
 
     private void ManageClouds()
