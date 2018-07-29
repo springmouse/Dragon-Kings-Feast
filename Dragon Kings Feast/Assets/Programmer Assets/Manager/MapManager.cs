@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
+    public List<GameObject> tileTypes;
+
     public List<GameObject> tilesInUse;
     public List<GameObject> tilesUsed;
 
@@ -16,11 +18,9 @@ public class MapManager : MonoBehaviour
 
     public List<GameObject> activeEnemeys;
     public List<GameObject> inactiveEnemeys;
-
-
+    
     public Player player;
-
-    public GameObject tile;
+    
     public GameObject cloud;
     public GameObject boost;
     public GameObject enemy;
@@ -48,8 +48,9 @@ public class MapManager : MonoBehaviour
         for (int i = 0; i < mapLength; i++)
         {
             //spawn the first tiles
-            GameObject go = Instantiate(tile, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
+            GameObject go = Instantiate(tileTypes[UnityEngine.Random.Range(0, tileTypes.Count)], new Vector3(i * tileSize, 0, 0), Quaternion.identity);
             go.transform.SetParent(transform);
+            go.transform.Rotate(new Vector3(0, 90 * UnityEngine.Random.Range(0, 3), 0));
 
             //spawn initial pick ups
             for (int u = 0; u < pickUpCount; u++)
@@ -223,6 +224,7 @@ public class MapManager : MonoBehaviour
                     {
                         tilesUsed[0].SetActive(true);
                         tilesUsed[0].transform.position = new Vector3(tilesInUse[i].transform.position.x + tileSize, 0, 0);
+                        tilesUsed[0].transform.Rotate(new Vector3(0, 90 * UnityEngine.Random.Range(0, 3), 0));
                         tilesInUse.Add(tilesUsed[0]);
                         tilesUsed.Remove(tilesUsed[0]);
 
@@ -233,8 +235,9 @@ public class MapManager : MonoBehaviour
                     }
                     else
                     {
-                        GameObject go = Instantiate(tile, new Vector3(tilesInUse[i].transform.position.x + tileSize, 0, 0), Quaternion.identity);
+                        GameObject go = Instantiate(tileTypes[UnityEngine.Random.Range(0, tileTypes.Count - 1)], new Vector3(i * tileSize, 0, 0), Quaternion.identity);
                         go.transform.SetParent(transform);
+                        go.transform.Rotate(new Vector3(0, 90 * UnityEngine.Random.Range(0, 3), 0));
 
                         tilesInUse.Add(go);
 

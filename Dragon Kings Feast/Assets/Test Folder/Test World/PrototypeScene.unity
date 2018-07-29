@@ -153,6 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade9db6b5a23dc2419dc84965aa3926b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileTypes:
+  - {fileID: 1638814395449274, guid: 6bf9723ef53e02345874629c99af48bd, type: 2}
+  - {fileID: 1903135876272244, guid: a7f0c3a54149feb43a475954f26f3db1, type: 2}
+  - {fileID: 1526495812764714, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
   tilesInUse: []
   tilesUsed: []
   leftClouds: []
@@ -162,7 +166,6 @@ MonoBehaviour:
   activeEnemeys: []
   inactiveEnemeys: []
   player: {fileID: 170923870}
-  tile: {fileID: 1718386094607162, guid: 5bcaade7bcd1bbe479af253807c61f45, type: 2}
   cloud: {fileID: 1872513028976712, guid: 3600ebde1e9dc934eb47c27c57f8fbe1, type: 2}
   boost: {fileID: 1478326558787624, guid: 91fcf3a4dd2d27d419826a27bd234de6, type: 2}
   enemy: {fileID: 1778621090268788, guid: 4177efdd9de20a34fac4f8b1e06f75fb, type: 2}
@@ -175,7 +178,7 @@ MonoBehaviour:
   MaxRange: 7
   enemySpawnCount: 1
   mapLength: 3
-  tileSize: 12
+  tileSize: 10
 --- !u!1 &95108175
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,48 +692,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1937682046
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4317438347856016, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317438347856016, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317438347856016, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317438347856016, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317438347856016, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317438347856016, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317438347856016, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317438347856016, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d14c9a96d4f92f440a3f19cf859d0b88, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &2104079845
 GameObject:
   m_ObjectHideFlags: 0
