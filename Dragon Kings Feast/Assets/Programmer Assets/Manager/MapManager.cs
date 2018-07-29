@@ -14,6 +14,10 @@ public class MapManager : MonoBehaviour
     public List<GameObject> activeBoosts;
     public List<GameObject> inactiveBoosts;
 
+    public List<GameObject> activeEnemeys;
+    public List<GameObject> inactiveEnemeys;
+
+
     public Player player;
 
     public GameObject tile;
@@ -43,9 +47,11 @@ public class MapManager : MonoBehaviour
     {
         for (int i = 0; i < mapLength; i++)
         {
+            //spawn the first tiles
             GameObject go = Instantiate(tile, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
             go.transform.SetParent(transform);
 
+            //spawn initial pick ups
             for (int u = 0; u < pickUpCount; u++)
             {
                 int spawn = UnityEngine.Random.Range(minRange, MaxRange);
@@ -63,6 +69,7 @@ public class MapManager : MonoBehaviour
                 }
             }
 
+            //spawn initiall enemeys
             for (int w = 0; w < enemySpawnCount; w++)
             {
                 GameObject en = Instantiate(enemy, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
@@ -72,11 +79,14 @@ public class MapManager : MonoBehaviour
                             player.startPos.y + UnityEngine.Random.Range(-player.maxVertical, player.maxVertical),
                             player.startPos.z + UnityEngine.Random.Range(-player.maxHorizontal, player.maxHorizontal));
 
+                activeEnemeys.Add(en);
+
             }
 
             tilesInUse.Add(go);
         }
 
+        //spawn all the right hand clouds
         for (int i = 0; i < cloudCount; i++)
         {
             GameObject go = Instantiate(cloud, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
@@ -89,6 +99,7 @@ public class MapManager : MonoBehaviour
             rightClouds.Add(go);
         }
 
+        //spawn all the left hand clouds
         for (int i = 0; i < cloudCount; i++)
         {
             GameObject go = Instantiate(cloud, new Vector3(i * tileSize, 0, 0), Quaternion.identity);
@@ -110,6 +121,7 @@ public class MapManager : MonoBehaviour
         ManageTiles();
         ManageClouds();
         ManageBoosts();
+        ManageEnemy();
     }
 
     public void DeactivateBoost(GameObject go)
@@ -117,6 +129,25 @@ public class MapManager : MonoBehaviour
         go.SetActive(false);
         inactiveBoosts.Add(go);
         activeBoosts.Remove(go);
+    }
+
+    private void ManageEnemy()
+    {
+        List<GameObject> KillList = new List<GameObject>();
+
+        for (int i = 0; i < activeEnemeys.Count; i++)
+        {
+            if (activeEnemeys[i].transform.position.x < player.transform.position.x)
+            {
+                KillList.Add(activeEnemeys[i]);
+            }
+        }
+
+        for (int i = 0; i < KillList.Count; i++)
+        {
+            activeEnemeys.Remove(KillList[i]);
+            Destroy(KillList[i]);
+        }
     }
 
     private void ManageBoosts()
@@ -135,6 +166,7 @@ public class MapManager : MonoBehaviour
         {
             activeBoosts.Remove(KillBoosts[i]);
             inactiveBoosts.Add(KillBoosts[i]);
+            KillBoosts[i].SetActive(false);
         }
     }
 
@@ -227,6 +259,7 @@ public class MapManager : MonoBehaviour
                         player.startPos.y + UnityEngine.Random.Range(-player.maxVertical, player.maxVertical),
                         player.startPos.z + UnityEngine.Random.Range(-player.maxHorizontal, player.maxHorizontal));
 
+            activeEnemeys.Add(en);
         }
     }
 
