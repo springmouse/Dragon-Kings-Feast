@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: 7d4792c79ac3f9f48b2d2a225da20ae6
+timeCreated: 1532910390
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Dragon_Group
+    100002: //RootNode
+    100004: DragonBody
+    100006: DragonFur1
+    100008: DragonFur2
+    100010: DragonFur3
+    100012: DragonHead
+    100014: joint1
+    100016: joint1_seg_10_joint
+    100018: joint1_seg_11_joint
+    100020: joint1_seg_12_joint
+    100022: joint1_seg_13_joint
+    100024: joint1_seg_14_joint
+    100026: joint1_seg_15_joint
+    100028: joint1_seg_1_joint
+    100030: joint1_seg_2_joint
+    100032: joint1_seg_3_joint
+    100034: joint1_seg_4_joint
+    100036: joint1_seg_5_joint
+    100038: joint1_seg_6_joint
+    100040: joint1_seg_7_joint
+    100042: joint1_seg_8_joint
+    100044: joint1_seg_9_joint
+    100046: joint2
+    400000: Dragon_Group
+    400002: //RootNode
+    400004: DragonBody
+    400006: DragonFur1
+    400008: DragonFur2
+    400010: DragonFur3
+    400012: DragonHead
+    400014: joint1
+    400016: joint1_seg_10_joint
+    400018: joint1_seg_11_joint
+    400020: joint1_seg_12_joint
+    400022: joint1_seg_13_joint
+    400024: joint1_seg_14_joint
+    400026: joint1_seg_15_joint
+    400028: joint1_seg_1_joint
+    400030: joint1_seg_2_joint
+    400032: joint1_seg_3_joint
+    400034: joint1_seg_4_joint
+    400036: joint1_seg_5_joint
+    400038: joint1_seg_6_joint
+    400040: joint1_seg_7_joint
+    400042: joint1_seg_8_joint
+    400044: joint1_seg_9_joint
+    400046: joint2
+    2100000: lambert1
+    4300000: DragonBody
+    4300002: DragonFur1
+    4300004: DragonHead
+    4300006: DragonFur3
+    4300008: DragonFur2
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: DragonBody
+    13700002: DragonFur1
+    13700004: DragonFur2
+    13700006: DragonFur3
+    13700008: DragonHead
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

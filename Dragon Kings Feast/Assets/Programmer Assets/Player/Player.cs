@@ -9,10 +9,7 @@ public class Player : MonoBehaviour
     //this is used to stop the phone from moving back so suddenly
     [Range(0, 1)]
     public float tiltBackCutOff;
-
-    //we use this to speed up the  tilt ()
-    public AnimationCurve ForwardTiltSpeed;
-
+    
     //these vlause are used to dictate how far to the sides and up and down a player can go
     //assume that what ever value you put in is mirroed both in the positive and negative
     //eg. maxHorizontal = 10 means the player can only move between -10 and 10 on the z plane
@@ -31,11 +28,18 @@ public class Player : MonoBehaviour
     //the starting position of the charcter in the world
     public Vector3 startPos;
 
+    public bool inverseCameraTilt;
+
     public Text debugText;
+
+    public float accelerpmitorDefaultZ;
 
     private void Awake()
     {
+        inverseCameraTilt = false;
         startPos = transform.position;
+
+        accelerpmitorDefaultZ = Input.acceleration.z;
     }
 
         private void Update()
@@ -88,42 +92,33 @@ public class Player : MonoBehaviour
 
         //////////////////Right, Left/////////////////
 
-        if (Input.acceleration.x > 0)
-        {
-            acceleration.z += -Input.acceleration.x;
-        }
+        float xHolder = -Input.acceleration.x;
 
-        if (Input.acceleration.x < 0)
-        {
-            acceleration.z += -Input.acceleration.x;
-        }
+        acceleration.z = xHolder;
+
+        Debug.Log("running, X = " + acceleration);
 
         //////////////////Up, down/////////////////
 
-        if (Input.acceleration.z + tiltBackCutOff > (0 ))
+        if (inverseCameraTilt == false)
         {
             float tiltvalue = Input.acceleration.z + tiltBackCutOff;
 
-            if (tiltBackCutOff > 1)
-            {
-                tiltBackCutOff = 1;
-            }
-            
-            float holder = tiltvalue * ForwardTiltSpeed.Evaluate(tiltvalue);
-                        
-            acceleration.y += -holder;
-        }
+            Debug.Log("running, X = " + tiltvalue);
 
-        if (Input.acceleration.z < 0)
+            float yHolder = accelerpmitorDefaultZ - tiltvalue;
+
+            acceleration.y = yHolder;
+        }
+        else
         {
-            float holder = Input.acceleration.z + tiltBackCutOff;
-            
-            if (holder > 0)
-            {
-                holder = 0;
-            }
-            
-            acceleration.y += -holder;
+            float tiltvalue = Input.acceleration.z + tiltBackCutOff;
+
+            Debug.Log("running, X = " + tiltvalue);
+
+            float yHolder = accelerpmitorDefaultZ - tiltvalue;
+
+            acceleration.y = -yHolder;
         }
 
         //acceleration *= 100;
@@ -133,7 +128,16 @@ public class Player : MonoBehaviour
         velocity = (acceleration);
 
     }
+    
+    public void SwapInverse()
+    {
+        inverseCameraTilt = inverseCameraTilt == true ? false : true;
+    }
 
+    public void SetDefaultY()
+    {
+        accelerpmitorDefaultZ = Input.acceleration.z;
+    }
 }
 
 

@@ -127,9 +127,9 @@ public class MapManager : MonoBehaviour
 
     public void DeactivateBoost(GameObject go)
     {
-        go.SetActive(false);
         inactiveBoosts.Add(go);
         activeBoosts.Remove(go);
+        go.SetActive(false);
     }
 
     private void ManageEnemy()
@@ -290,6 +290,8 @@ public class MapManager : MonoBehaviour
                     inactiveBoosts[0].transform.position = new Vector3(xPos + UnityEngine.Random.Range(-tileSize, tileSize),
                         player.startPos.y + UnityEngine.Random.Range(-player.maxVertical, player.maxVertical),
                         player.startPos.z + UnityEngine.Random.Range(-player.maxHorizontal, player.maxHorizontal));
+                    activeBoosts.Add(inactiveBoosts[0]);
+                    inactiveBoosts[0].SetActive(true);
                     inactiveBoosts.Remove(inactiveBoosts[0]);
                 }
             }
