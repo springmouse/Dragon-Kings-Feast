@@ -138,7 +138,7 @@ public class MapManager : MonoBehaviour
 
         for (int i = 0; i < activeEnemeys.Count; i++)
         {
-            if (activeEnemeys[i].transform.position.x < player.transform.position.x)
+            if ((activeEnemeys[i].transform.position.x + tileSize)< player.transform.position.x)
             {
                 KillList.Add(activeEnemeys[i]);
             }
@@ -157,7 +157,7 @@ public class MapManager : MonoBehaviour
 
         for (int i = 0; i < activeBoosts.Count; i++)
         {
-            if (activeBoosts[i].transform.position.x < player.transform.position.x)
+            if ((activeBoosts[i].transform.position.x + tileSize) < player.transform.position.x)
             {
                 KillBoosts.Add(activeBoosts[i]);
             }
@@ -175,7 +175,7 @@ public class MapManager : MonoBehaviour
     {
         for (int i = 0; i < rightClouds.Count; i++)
         {
-            if (rightClouds[i].transform.position.x < player.transform.position.x)
+            if ((rightClouds[i].transform.position.x + tileSize) < player.transform.position.x)
             {
                 rightClouds[i].transform.position = new Vector3(UnityEngine.Random.Range(0, tileSize * 2) + player.transform.position.x + (tileSize * 2), 
                     UnityEngine.Random.Range(minCloudYRange, maxCloudYRange) + 7.5f,
@@ -185,7 +185,7 @@ public class MapManager : MonoBehaviour
 
         for (int i = 0; i < leftClouds.Count; i++)
         {
-            if (leftClouds[i].transform.position.x < player.transform.position.x)
+            if ((leftClouds[i].transform.position.x + tileSize) < player.transform.position.x)
             {
                 leftClouds[i].transform.position = new Vector3(UnityEngine.Random.Range(0, tileSize * 2) + player.transform.position.x + (tileSize * 2),
                     UnityEngine.Random.Range(minCloudYRange, maxCloudYRange) + 7.5f,
